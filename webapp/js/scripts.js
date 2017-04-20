@@ -1,6 +1,6 @@
 $(".qna-comment").on("click", ".answerWrite input[type=submit]", addAnswer);
 $(".qna-comment").on("click", ".link-delete-article", deleteAnswer);
-//$(".answerWrite input[type=submit]").click(addAnswer);
+$("#modify-article").on("click", isAbleToModifyArticle);
 
 function addAnswer(e) {
   e.preventDefault();
@@ -36,11 +36,44 @@ function deleteAnswer(e) {
 		url : url,
 		data: data
 	}).done(function(data, status) {
-		count.text(parseInt(count.text()) - 1);
-		answer.remove();
+		if (data.result.status) {
+			count.text(parseInt(count.text()) - 1);
+			answer.remove();
+		} else {
+			console.log("failed delete answer in database.");
+		}
 	}).fail(function(jQueryXhr, status) {
 		alert("failed to delete an answer.");
 	});
+}
+
+function isAbleToModifyArticle(e) { //
+	e.preventDefault();
+	
+	var url = "/qna/modify";
+	var writer = $(".article-author-name").text();
+	var questionId = $("#question-id").val();
+	var data = {
+			"writer" : writer,
+			"questionId" : questionId
+	}
+	
+	console.log(data);
+	
+	$.ajax({
+		type : 'post',
+		url : url,
+		data : data,
+		dataType : 'json'
+	}).done(function(data, status) {
+		if (data.result.status) {
+			location.href = data.url;
+		} else {
+			alert(data.result.message);
+		}
+	}).fail(function(jQueryXhr, status) {
+		console.log("failed to modify question");
+	})
 }
 
 function onSuccess(json, status){

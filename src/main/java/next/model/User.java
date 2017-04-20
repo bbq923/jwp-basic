@@ -42,6 +42,14 @@ public class User {
 
         return this.password.equals(password);
     }
+    
+    public boolean matchName(String name) {
+    	if (name == null) {
+    		return false;
+    	}
+    	
+    	return this.name.equals(name);
+    }
 
     public boolean isSameUser(User user) {
         return userId.equals(user.userId);

@@ -10,9 +10,12 @@ import next.controller.HomeController;
 import next.controller.qna.AddAnswerController;
 import next.controller.qna.CreateQuestionController;
 import next.controller.qna.DeleteAnswerController;
+import next.controller.qna.ModifyFormController;
 import next.controller.qna.QuestionController;
 import next.controller.qna.QuestionListController;
+import next.controller.qna.QuestionModifyController;
 import next.controller.qna.ShowController;
+import next.controller.qna.UpdateQuestionController;
 import next.controller.user.CreateUserController;
 import next.controller.user.ListUserController;
 import next.controller.user.LoginController;
@@ -37,11 +40,14 @@ public class RequestMapping {
         mappings.put("/users/updateForm", new UpdateFormUserController());
         mappings.put("/users/update", new UpdateUserController());
         mappings.put("/qna/form", new QuestionController());
+        mappings.put("/qna/modify", new QuestionModifyController());
+        mappings.put("/qna/modify/form", new ModifyFormController());
         mappings.put("/qna/show", new ShowController());
         mappings.put("/qna/create", new CreateQuestionController());
         mappings.put("/api/qna/addAnswer", new AddAnswerController());
         mappings.put("/api/qna/deleteAnswer", new DeleteAnswerController());
         mappings.put("/api/qna/list", new QuestionListController());
+        mappings.put("/qna/update", new UpdateQuestionController());
 
         logger.info("Initialized Request Mapping!");
     }

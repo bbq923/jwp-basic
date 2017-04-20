@@ -28,7 +28,7 @@ public class Question {
         this.createdDate = createdDate;
         this.countOfComment = countOfComment;
     }
-
+    
     public long getQuestionId() {
         return questionId;
     }
@@ -63,6 +63,10 @@ public class Question {
 
     public void decreaseCountOfComment() {
     	this.countOfComment--;
+    }
+    
+    public void setContents(String contents) {
+    	this.contents = contents;
     }
 
     @Override
