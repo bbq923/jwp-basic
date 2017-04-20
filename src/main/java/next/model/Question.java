@@ -56,6 +56,14 @@ public class Question {
     public int getCountOfComment() {
         return countOfComment;
     }
+    
+    public void increaseCountOfComment() {
+    	this.countOfComment++;
+    }
+
+    public void decreaseCountOfComment() {
+    	this.countOfComment--;
+    }
 
     @Override
     public String toString() {

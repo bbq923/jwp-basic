@@ -34,6 +34,12 @@ CREATE TABLE ANSWERS (
 	PRIMARY KEY         (answerId)
 );
 
+INSERT INTO USERS (userId, password, name, email) VALUES
+('javajigi', 'pass', 'sanjigi', 'javajigi@gmail.com');
+
+INSERT INTO USERS (userId, password, name, email) VALUES
+('bbq923', 'kdo', 'bbq', 'bbq923@gmail.com');
+
 INSERT INTO QUESTIONS (questionId, writer, title, contents, createdDate, countOfAnswer) VALUES
 (1, '자바지기',
 '국내에서 Ruby on Rails와 Play가 활성화되기 힘든 이유는 뭘까?', 

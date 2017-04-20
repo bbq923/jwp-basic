@@ -14,13 +14,18 @@ function addAnswer(e) {
     error: onError,
     success : onSuccess,
   });
+  
+  $("#writer").val('');
+  $("#contents").val('');
 }
 
 function onSuccess(json, status){
+  console.log(json);
   var answer = json.answer;
   var answerTemplate = $("#answerTemplate").html();
   var template = answerTemplate.format(answer.writer, new Date(answer.createdDate), answer.contents, answer.answerId, answer.answerId);
   $(".qna-comment-slipp-articles").prepend(template);
+  $(".qna-comment-count strong").text(json.countOfComment);
 }
 
 function onError(xhr, status) {

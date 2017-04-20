@@ -10,6 +10,7 @@ import java.util.List;
 import core.jdbc.JdbcTemplate;
 import core.jdbc.KeyHolder;
 import core.jdbc.PreparedStatementCreator;
+import core.jdbc.PreparedStatementSetter;
 import core.jdbc.RowMapper;
 import next.model.Question;
 
@@ -34,6 +35,25 @@ public class QuestionDao {
         KeyHolder keyHolder = new KeyHolder();
         jdbcTemplate.update(psc, keyHolder);
         return findById(keyHolder.getId());
+    }
+    
+    public Question update(Question question) {
+    	JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    	String sql = "UPDATE QUESTIONS " +
+    			"SET title = ?, contents = ?, countOfAnswer = ? " +
+    			"WHERE questionId = ?";
+    	PreparedStatementSetter pss = new PreparedStatementSetter() {
+			@Override
+			public void setParameters(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, question.getTitle());
+				pstmt.setString(2, question.getContents());
+				pstmt.setInt(3, question.getCountOfComment());
+				pstmt.setLong(4, question.getQuestionId());
+			}
+    	};
+    	
+    	jdbcTemplate.update(sql, pss);
+    	return findById(question.getQuestionId());
     }
     
     public List<Question> findAll() {
