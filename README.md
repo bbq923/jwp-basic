@@ -13,4 +13,4 @@
 
 #### 7. next.web.qna package의 ShowController는 멀티 쓰레드 상황에서 문제가 발생하는 이유에 대해 설명하라.
 * 사용자의 요청이 들어오면 RequestMapping의 Map\<String, Controller\> 안에 저장되어 있던 ShowController의 인스턴스를 꺼내 사용한다. 하나의 인스턴스를 사용하기 때문에 
-이전 Question과 List<Answer>의 경우 나중에 들어온 사용자의 요청에 의해 이전 사용자를 위해 저장해 두었던 값이 덮어 써질 수 있다. 
+이전 사용자의 요청에 의해 할당된 Question과 List\<Answer\>의 경우 나중에 들어온 사용자의 요청에 의해 이전 사용자를 위해 저장해 두었던 값이 덮어 써질 수 있다. 
